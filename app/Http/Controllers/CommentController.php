@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Models\Comment;   // ← LISA SEE
 use Illuminate\Http\Request;
 
 class CommentController extends Controller

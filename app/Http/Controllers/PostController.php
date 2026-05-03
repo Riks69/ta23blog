@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Like;
+use App\Models\Post;        // ← SEE RIDA ON VAJALIK!
 use Illuminate\Http\Request;
 
 class PostController extends Controller

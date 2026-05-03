@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
-use App\Models\Post;
+use App\Models\Post;      // ← LISA SEE
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
