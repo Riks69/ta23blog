@@ -18,7 +18,7 @@
 </head>
 <body class="bg-base-200">
 
-    <!-- Navbar - KÕIK NUPUD TAGASI! -->
+    <!-- Navbar -->
     <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto">
             <div class="flex-1">
@@ -30,7 +30,7 @@
             <!-- Navigatsiooni lingud -->
             <div class="hidden md:flex gap-2">
                 <a href="/" class="btn btn-ghost">Avaleht</a>
-                <a href="#" class="btn btn-ghost">Kategooriad</a>
+                <a href="/kategooriad" class="btn btn-ghost">Kategooriad</a>
                 <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             

@@ -3,7 +3,8 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ContactController;  // ← LISA SEE!
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Avalik blogi
@@ -17,6 +18,10 @@ Route::post('/comment/{postId}', [CommentController::class, 'store']);
 // Kontakt
 Route::get('/contact', [ContactController::class, 'index']);
 Route::post('/contact', [ContactController::class, 'send']);
+
+// Kategooriad
+Route::get('/kategooriad', [CategoryController::class, 'index']);
+Route::get('/kategooria/{slug}', [CategoryController::class, 'show']);
 
 // ADMINISSE
 Route::prefix('admin')->group(function () {

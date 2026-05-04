@@ -50,7 +50,7 @@
             <!-- Navigatsiooni lingud -->
             <div class="hidden md:flex gap-2">
                 <a href="/" class="btn btn-ghost">Avaleht</a>
-                <a href="#" class="btn btn-ghost">Kategooriad</a>
+                <a href="/kategooriad" class="btn btn-ghost">Kategooriad</a>
                 <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             
