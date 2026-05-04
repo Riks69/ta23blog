@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minu Blogi | Laravel + DaisyUI</title>
+    <title>Riksi Blogi | Laravel + DaisyUI</title>
     
     <!-- Tailwind + DaisyUI -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,7 +43,7 @@
         <div class="container mx-auto">
             <div class="flex-1">
                 <a href="/" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                    📝 Minu Blogi
+                    📝 Riksi Blogi
                 </a>
             </div>
             
@@ -51,7 +51,7 @@
             <div class="hidden md:flex gap-2">
                 <a href="/" class="btn btn-ghost">Avaleht</a>
                 <a href="#" class="btn btn-ghost">Kategooriad</a>
-                <a href="#" class="btn btn-ghost">Kontakt</a>
+                <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             
             <div class="flex-none gap-2">
@@ -90,7 +90,7 @@
         <div class="container mx-auto px-4 text-center relative z-10">
             <div class="max-w-3xl mx-auto">
                 <div class="badge badge-lg bg-white/20 text-white border-none mb-4">✨ 2026 ✨</div>
-                <h1 class="text-6xl md:text-7xl font-extrabold mb-6">Minu Blogi</h1>
+                <h1 class="text-6xl md:text-7xl font-extrabold mb-6">Riksi Blogi</h1>
                 <p class="text-xl md:text-2xl mb-8 text-white/90">Mõtted, lood ja ideed</p>
                 <div class="flex gap-4 justify-center">
                     <button class="btn btn-primary btn-lg">🔍 Avasta postitusi</button>
@@ -177,7 +177,7 @@
     <footer class="footer footer-center bg-base-300 text-base-content p-10">
         <div>
             <p class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Minu Blogi
+                Riksi Blogi
             </p>
             <p>Made with ❤️ using Laravel & DaisyUI</p>
             <div class="flex gap-4 justify-center mt-4">
@@ -185,7 +185,7 @@
                 <a href="#" class="btn btn-ghost btn-sm">📘 Facebook</a>
                 <a href="#" class="btn btn-ghost btn-sm">📷 Instagram</a>
             </div>
-            <p class="text-sm opacity-50 mt-6">© 2026 Minu Blogi. Kõik õigused kaitstud.</p>
+            <p class="text-sm opacity-50 mt-6">© 2026 Riksi Blogi. Kõik õigused kaitstud.</p>
         </div>
     </footer>
 

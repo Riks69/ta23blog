@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $post->title }} | Minu Blogi</title>
+    <title>{{ $post->title }} | Riksi Blogi</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
             <div class="hidden md:flex gap-2">
                 <a href="/" class="btn btn-ghost">Avaleht</a>
                 <a href="#" class="btn btn-ghost">Kategooriad</a>
-                <a href="#" class="btn btn-ghost">Kontakt</a>
+                <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             
             <div class="flex-none gap-2">

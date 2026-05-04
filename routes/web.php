@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;  // ← LISA SEE!
 use Illuminate\Support\Facades\Route;
 
 // Avalik blogi
@@ -12,6 +13,10 @@ Route::get('/post/{id}', [PostController::class, 'show']);
 // Meeldimised ja kommentaarid
 Route::post('/like/{postId}', [LikeController::class, 'toggle']);
 Route::post('/comment/{postId}', [CommentController::class, 'store']);
+
+// Kontakt
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'send']);
 
 // ADMINISSE
 Route::prefix('admin')->group(function () {

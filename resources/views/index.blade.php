@@ -16,7 +16,7 @@
     <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold text-purple-600">📝 Minu Blogi</a>
+                <a href="/" class="text-2xl font-bold text-purple-600">📝 Riksi Blogi</a>
                 <div class="flex gap-4">
                     <details class="dropdown dropdown-end">
                         <summary class="btn btn-ghost btn-circle">🎨</summary>
@@ -34,7 +34,7 @@
     <!-- Hero -->
     <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl font-bold mb-4">Minu Blogi</h1>
+            <h1 class="text-5xl font-bold mb-4">Riksi Blogi</h1>
             <p class="text-xl opacity-95">Mõtted, lood ja ideed</p>
         </div>
     </div>
