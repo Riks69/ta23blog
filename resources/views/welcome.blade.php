@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minu Blogi | Laravel + DaisyUI</title>
+    <title>Riksi Blogi | Laravel + DaisyUI</title>
     @vite(['resources/css/app.css'])
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
@@ -39,7 +39,7 @@
     <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center py-4">
-                <a class="text-2xl font-bold gradient-text" href="#">✨ Minu Blogi</a>
+                <a class="text-2xl font-bold gradient-text" href="#">✨ Riksi Blogi</a>
                 
                 <div class="hidden md:flex space-x-8">
                     <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition">Avaleht</a>
@@ -198,7 +198,7 @@
         <div class="container mx-auto px-6">
             <div class="text-center">
                 <p class="text-gray-400">Made with ❤️ using Laravel & DaisyUI</p>
-                <p class="text-gray-500 text-sm mt-4">© 2026 Minu Blogi. Kõik õigused kaitstud.</p>
+                <p class="text-gray-500 text-sm mt-4">© 2026 Riksi Blogi. Kõik õigused kaitstud.</p>
             </div>
         </div>
     </footer>
