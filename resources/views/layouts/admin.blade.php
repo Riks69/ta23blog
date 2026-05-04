@@ -1,20 +1,96 @@
 <!DOCTYPE html>
-<html lang="et">
+<html lang="et" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Blogi</title>
-    @vite(['resources/css/app.css'])
+    <title>Admin paneel | Minu Blogi</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" type="text/css" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .animated-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900">
-    <nav class="bg-white dark:bg-gray-800 shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between">
-            <a href="/admin" class="text-purple-600 font-bold">Admin</a>
-            <a href="/" class="text-gray-600 dark:text-gray-300">Vaata blogi →</a>
+<body class="bg-base-200">
+
+    <!-- Navbar -->
+    <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto">
+            <div class="flex-1">
+                <a href="/admin" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    🔧 Admin paneel
+                </a>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <a href="/admin/tags" class="btn btn-ghost">🏷️ Sildid</a>
+                <a href="/admin/posts/create" class="btn btn-primary">✏️ Lisa postitus</a>
+                <a href="/" class="btn btn-ghost">📝 Vaata blogi</a>
+            </div>
+            <div class="flex-none gap-2">
+                <!-- Teemade valija -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow-2xl">
+                        <li><a onclick="setTheme('light')">☀️ Hele</a></li>
+                        <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
-    <div class="container mx-auto px-4 py-8">
+
+    <!-- Hero -->
+    <div class="animated-gradient text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="badge badge-lg bg-white/20 text-white border-none mb-3">🔐 Admin</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">Tere tulemast!</h1>
+            <p class="text-lg opacity-90">Halda oma blogi sisu</p>
+        </div>
+    </div>
+
+    <!-- Sisu -->
+    <div class="container mx-auto px-4 py-12">
+        @if(session('success'))
+            <div class="alert alert-success mb-6 shadow-lg">
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+        
         @yield('content')
     </div>
+
+    <!-- Footer -->
+    <footer class="footer footer-center bg-base-300 text-base-content p-6 mt-12">
+        <p>Made with ❤️ using Laravel & DaisyUI</p>
+    </footer>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
 </body>
 </html>
