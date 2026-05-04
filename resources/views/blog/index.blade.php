@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riksi Blogi | Laravel + DaisyUI</title>
     
-    <!-- Tailwind + DaisyUI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" type="text/css" />
     
@@ -30,15 +29,11 @@
             background-size: 200% 200%;
             animation: gradientShift 5s ease infinite;
         }
-        
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
     </style>
 </head>
 <body class="bg-base-200">
 
-    <!-- Navbar - KÕIK NUPUD ON TAGASI! -->
+    <!-- Navbar -->
     <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto">
             <div class="flex-1">
@@ -46,16 +41,12 @@
                     📝 Riksi Blogi
                 </a>
             </div>
-            
-            <!-- Navigatsiooni lingud -->
             <div class="hidden md:flex gap-2">
-                <a href="/" class="btn btn-ghost">Avaleht</a>
+                <a href="/" class="btn btn-primary">Avaleht</a>
                 <a href="/kategooriad" class="btn btn-ghost">Kategooriad</a>
                 <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
-            
             <div class="flex-none gap-2">
-                <!-- Teemade valija (ainult light ja dark) -->
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,18 +58,9 @@
                         <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
                     </ul>
                 </div>
-                
-                <!-- Otsingu nupp -->
                 <button class="btn btn-ghost btn-circle">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </button>
-                
-                <!-- Mobiili menüü nupp -->
-                <button class="md:hidden btn btn-ghost btn-circle">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -86,18 +68,16 @@
     </nav>
 
     <!-- Hero -->
-    <div class="animated-gradient text-white py-32 relative">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <div class="max-w-3xl mx-auto">
-                <div class="badge badge-lg bg-white/20 text-white border-none mb-4">✨ 2026 ✨</div>
-                <h1 class="text-6xl md:text-7xl font-extrabold mb-6">Riksi Blogi</h1>
-                <p class="text-xl md:text-2xl mb-8 text-white/90">Mõtted, lood ja ideed</p>
-                <div class="flex gap-4 justify-center">
-                    <button class="btn btn-primary btn-lg">🔍 Avasta postitusi</button>
-                    <button class="btn btn-outline btn-lg bg-white/10 border-white text-white hover:bg-white hover:text-purple-600">
-                        📧 Liitu
-                    </button>
-                </div>
+    <div class="animated-gradient text-white py-32">
+        <div class="container mx-auto px-4 text-center">
+            <div class="badge badge-lg bg-white/20 text-white border-none mb-4">✨ 2026 ✨</div>
+            <h1 class="text-6xl md:text-7xl font-bold mb-6">Riksi Blogi</h1>
+            <p class="text-xl md:text-2xl mb-8 text-white/90">Mõtted, lood ja ideed</p>
+            <div class="flex gap-4 justify-center">
+                <a href="/kategooriad" class="btn btn-neutral btn-lg">🔍 Avasta postitusi</a>
+                <a href="/contact" class="btn btn-outline btn-lg bg-white/10 border-white text-white hover:bg-white hover:text-purple-600">
+                    📧 Võta ühendust
+                </a>
             </div>
         </div>
     </div>
@@ -189,13 +169,11 @@
         </div>
     </footer>
 
-    <!-- Teemade skript -->
     <script>
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
         }
-        
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);

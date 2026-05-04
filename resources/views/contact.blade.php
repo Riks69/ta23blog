@@ -21,6 +21,14 @@
             background-size: 200% 200%;
             animation: gradientShift 5s ease infinite;
         }
+        
+        .contact-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body class="bg-base-200">
@@ -33,24 +41,23 @@
                     📝 Riksi Blogi
                 </a>
             </div>
-            
             <div class="hidden md:flex gap-2">
                 <a href="/" class="btn btn-ghost">Avaleht</a>
                 <a href="/kategooriad" class="btn btn-ghost">Kategooriad</a>
                 <a href="/contact" class="btn btn-primary">Kontakt</a>
             </div>
-            
             <div class="flex-none gap-2">
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                        🎨
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
                     </div>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow-2xl">
                         <li><a onclick="setTheme('light')">☀️ Hele</a></li>
                         <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
                     </ul>
                 </div>
-                
                 <button class="btn btn-ghost btn-circle">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -63,17 +70,18 @@
     <!-- Hero -->
     <div class="animated-gradient text-white py-24">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4">📧 Võta ühendust</h1>
+            <div class="badge badge-lg bg-white/20 text-white border-none mb-4">📬 Võta ühendust</div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Kontakt</h1>
             <p class="text-xl opacity-90">Mul on hea meel sinuga suhelda!</p>
         </div>
     </div>
 
-    <!-- Kontaktivorm -->
-    <div class="container mx-auto px-4 py-16 max-w-4xl">
+    <!-- Kontaktisisu -->
+    <div class="container mx-auto px-4 py-16 max-w-5xl">
         <div class="grid md:grid-cols-2 gap-8">
             
             <!-- Vasak pool - info -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="contact-card card bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title text-2xl mb-4">📬 Minu andmed</h2>
                     
@@ -118,7 +126,7 @@
             </div>
             
             <!-- Parem pool - vorm -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="contact-card card bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title text-2xl mb-4">✍️ Saada sõnum</h2>
                     
@@ -161,7 +169,7 @@
         </div>
         
         <!-- Kaart -->
-        <div class="card bg-base-100 shadow-xl mt-8">
+        <div class="contact-card card bg-base-100 shadow-xl mt-8">
             <div class="card-body">
                 <h3 class="card-title">📍 Asukoht</h3>
                 <div class="bg-base-200 rounded-xl h-64 flex items-center justify-center">
@@ -176,7 +184,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer footer-center bg-base-300 text-base-content p-10">
+    <footer class="footer footer-center bg-base-300 text-base-content p-10 mt-12">
         <div>
             <p class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Riksi Blogi
@@ -196,7 +204,6 @@
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
         }
-        
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
