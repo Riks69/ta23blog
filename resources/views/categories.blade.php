@@ -35,40 +35,58 @@
 
     <!-- Navbar -->
     <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
-    <div class="container mx-auto">
-        <div class="flex-1">
-            <a href="/" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                📝 Riksi Blogi
-            </a>
-        </div>
-        <div class="hidden md:flex gap-2">
-            <a href="/" class="btn btn-ghost">Avaleht</a>
-            <a href="/kategooriad" class="btn btn-primary">Kategooriad</a>
-            <a href="/contact" class="btn btn-ghost">Kontakt</a>
-        </div>
-        <div class="flex-none gap-2">
-            <!-- Teemade valija -->
-            <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                    </svg>
-                </div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow-2xl">
-                    <li><a onclick="setTheme('light')">☀️ Hele</a></li>
-                    <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
-                </ul>
+        <div class="container mx-auto">
+            <div class="flex-1">
+                <a href="/" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    📝 Riksi Blogi
+                </a>
             </div>
-            
-            <!-- Otsingu nupp -->
-            <button class="btn btn-ghost btn-circle">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-            </button>
+            <div class="hidden md:flex gap-2">
+                <a href="/" class="btn btn-ghost">Avaleht</a>
+                <a href="/kategooriad" class="btn btn-primary">Kategooriad</a>
+                <a href="/contact" class="btn btn-ghost">Kontakt</a>
+            </div>
+            <div class="flex-none gap-2">
+                <!-- Otsingu nupp -->
+                <button class="btn btn-ghost btn-circle" onclick="searchModal.showModal()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                
+                <!-- Teemade valija -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow-2xl">
+                        <li><a onclick="setTheme('light')">☀️ Hele</a></li>
+                        <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
+    <!-- Otsingu modaal -->
+    <dialog id="searchModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg mb-4">🔍 Otsi postitusi</h3>
+            <form action="/search" method="GET">
+                <input type="text" name="q" placeholder="Kirjuta otsingusõna..." 
+                       class="input input-bordered w-full" autocomplete="off" required>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">Otsi</button>
+                    <button type="button" class="btn btn-ghost" onclick="searchModal.close()">Sulge</button>
+                </div>
+            </form>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 
     <!-- Hero -->
     <div class="animated-gradient text-white py-24">

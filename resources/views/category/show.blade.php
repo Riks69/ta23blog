@@ -47,6 +47,14 @@
                 <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             <div class="flex-none gap-2">
+                <!-- Otsingu nupp -->
+                <button class="btn btn-ghost btn-circle" onclick="searchModal.showModal()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                
+                <!-- Teemade valija -->
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,14 +66,27 @@
                         <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
                     </ul>
                 </div>
-                <button class="btn btn-ghost btn-circle">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Otsingu modaal -->
+    <dialog id="searchModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg mb-4">🔍 Otsi postitusi</h3>
+            <form action="/search" method="GET">
+                <input type="text" name="q" placeholder="Kirjuta otsingusõna..." 
+                       class="input input-bordered w-full" autocomplete="off" required>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">Otsi</button>
+                    <button type="button" class="btn btn-ghost" onclick="searchModal.close()">Sulge</button>
+                </div>
+            </form>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
 
     <!-- Hero -->
     <div class="animated-gradient text-white py-24">
@@ -104,6 +125,15 @@
                                 <span>📅 {{ $post->created_at->diffForHumans() }}</span>
                             </div>
                             <p class="text-base-content/70">{{ Str::limit($post->content, 150) }}</p>
+                            
+                            @if($post->tags->count() > 0)
+                                <div class="flex flex-wrap gap-1 mt-2">
+                                    @foreach($post->tags as $tag)
+                                        <a href="/tag/{{ $tag->slug }}" class="badge badge-xs badge-ghost">#{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
+                            @endif
+                            
                             <div class="card-actions justify-between items-center mt-4">
                                 <div class="flex gap-3">
                                     <span class="btn btn-sm btn-ghost gap-1">💬 {{ $post->comments_count }}</span>
@@ -131,11 +161,6 @@
                 Riksi Blogi
             </p>
             <p>Made with ❤️ using Laravel & DaisyUI</p>
-            <div class="flex gap-4 justify-center mt-4">
-                <a href="#" class="btn btn-ghost btn-sm">🐦 Twitter</a>
-                <a href="#" class="btn btn-ghost btn-sm">📘 Facebook</a>
-                <a href="#" class="btn btn-ghost btn-sm">📷 Instagram</a>
-            </div>
             <p class="text-sm opacity-50 mt-6">© 2026 Riksi Blogi. Kõik õigused kaitstud.</p>
         </div>
     </footer>

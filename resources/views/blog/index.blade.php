@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riksi Blogi | Laravel + DaisyUI</title>
+    <title>Riksi Blogi</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" type="text/css" />
@@ -47,6 +47,14 @@
                 <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             <div class="flex-none gap-2">
+                <!-- Otsingu nupp - avab modaali -->
+                <button class="btn btn-ghost btn-circle" onclick="searchModal.showModal()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                
+                <!-- Teemade valija -->
                 <div class="dropdown dropdown-end">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,19 +66,32 @@
                         <li><a onclick="setTheme('dark')">🌙 Tume</a></li>
                     </ul>
                 </div>
-                <button class="btn btn-ghost btn-circle">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </button>
             </div>
         </div>
     </nav>
 
+    <!-- Otsingu modaal -->
+    <dialog id="searchModal" class="modal">
+        <div class="modal-box">
+            <h3 class="font-bold text-lg mb-4">🔍 Otsi postitusi</h3>
+            <form action="/search" method="GET">
+                <input type="text" name="q" placeholder="Kirjuta otsingusõna..." 
+                       class="input input-bordered w-full" autocomplete="off" required>
+                <div class="modal-action">
+                    <button type="submit" class="btn btn-primary">Otsi</button>
+                    <button type="button" class="btn btn-ghost" onclick="searchModal.close()">Sulge</button>
+                </div>
+            </form>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
     <!-- Hero -->
     <div class="animated-gradient text-white py-32">
         <div class="container mx-auto px-4 text-center">
-            <div class="badge badge-lg bg-white/20 text-white border-none mb-4">✨ 2026 ✨</div>
+            <div class="badge badge-lg bg-white/20 text-white border-none mb-4">✨ Riksi Blogi ✨</div>
             <h1 class="text-6xl md:text-7xl font-bold mb-6">Riksi Blogi</h1>
             <p class="text-xl md:text-2xl mb-8 text-white/90">Mõtted, lood ja ideed</p>
             <div class="flex gap-4 justify-center">
@@ -93,7 +114,7 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($posts as $index => $post)
+            @foreach($posts as $post)
                 <div class="blog-card card bg-base-100 shadow-xl">
                     <figure class="px-4 pt-4">
                         @if($post->image)
@@ -114,6 +135,15 @@
                             <a href="/post/{{ $post->id }}" class="hover:text-purple-600 transition">{{ $post->title }}</a>
                         </h2>
                         <p class="text-base-content/70 line-clamp-3">{{ Str::limit($post->content, 100) }}</p>
+                        
+                        @if($post->tags->count() > 0)
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                @foreach($post->tags as $tag)
+                                    <a href="/tag/{{ $tag->slug }}" class="badge badge-xs badge-ghost">#{{ $tag->name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
+                        
                         <div class="card-actions justify-between items-center mt-4">
                             <div class="flex gap-3">
                                 <a href="/post/{{ $post->id }}" class="btn btn-sm btn-ghost gap-1">

@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 // Avalik blogi
 Route::get('/', [PostController::class, 'index']);
@@ -15,6 +16,9 @@ Route::get('/post/{id}', [PostController::class, 'show']);
 // Meeldimised ja kommentaarid
 Route::post('/like/{postId}', [LikeController::class, 'toggle']);
 Route::post('/comment/{postId}', [CommentController::class, 'store']);
+
+// Otsing
+Route::get('/search', [SearchController::class, 'search']);
 
 // Kontakt
 Route::get('/contact', [ContactController::class, 'index']);

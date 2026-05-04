@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin paneel | Riksi Blogi</title>
+    <title>Otsing: {{ $query }} | Riksi Blogi</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css" rel="stylesheet" type="text/css" />
@@ -11,6 +11,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         * { font-family: 'Inter', sans-serif; }
+        
+        .blog-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.2);
+        }
         
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
@@ -29,14 +37,14 @@
     <nav class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
         <div class="container mx-auto">
             <div class="flex-1">
-                <a href="/admin" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                    🔧 Riksi Admin
+                <a href="/" class="btn btn-ghost text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    📝 Riksi Blogi
                 </a>
             </div>
             <div class="hidden md:flex gap-2">
-                <a href="/admin/tags" class="btn btn-ghost">🏷️ Sildid</a>
-                <a href="/admin/posts/create" class="btn btn-primary">✏️ Lisa postitus</a>
-                <a href="/" class="btn btn-ghost">📝 Vaata blogi</a>
+                <a href="/" class="btn btn-ghost">Avaleht</a>
+                <a href="/kategooriad" class="btn btn-ghost">Kategooriad</a>
+                <a href="/contact" class="btn btn-ghost">Kontakt</a>
             </div>
             <div class="flex-none gap-2">
                 <!-- Otsingu nupp -->
@@ -81,27 +89,80 @@
     </dialog>
 
     <!-- Hero -->
-    <div class="animated-gradient text-white py-16">
+    <div class="animated-gradient text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <div class="badge badge-lg bg-white/20 text-white border-none mb-3">🔐 Admin</div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-3">Tere tulemast!</h1>
-            <p class="text-lg opacity-90">Halda oma blogi sisu</p>
+            <div class="badge badge-lg bg-white/20 text-white border-none mb-4">🔍 Otsing</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                Otsing: "{{ $query }}"
+            </h1>
+            <p class="text-xl opacity-90">Leiti {{ $posts->count() }} tulemust</p>
         </div>
     </div>
 
-    <!-- Sisu -->
-    <div class="container mx-auto px-4 py-12">
-        @if(session('success'))
-            <div class="alert alert-success mb-6 shadow-lg">
-                <span>{{ session('success') }}</span>
+    <!-- Tulemused -->
+    <div class="container mx-auto px-4 py-16 max-w-4xl">
+        @if($posts->count() > 0)
+            <div class="space-y-6">
+                @foreach($posts as $post)
+                    <div class="blog-card card bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <div class="flex items-center gap-2 text-sm text-base-content/60 mb-2">
+                                <span>✍️ {{ $post->author }}</span>
+                                <span>•</span>
+                                <span>📅 {{ $post->created_at->diffForHumans() }}</span>
+                            </div>
+                            <h2 class="card-title text-2xl">
+                                <a href="/post/{{ $post->id }}" class="hover:text-purple-600">
+                                    {{ $post->title }}
+                                </a>
+                            </h2>
+                            <p class="text-base-content/70">
+                                {{ Str::limit($post->content, 150) }}
+                            </p>
+                            
+                            @if($post->tags->count() > 0)
+                                <div class="flex flex-wrap gap-1 mt-2">
+                                    @foreach($post->tags as $tag)
+                                        <a href="/tag/{{ $tag->slug }}" class="badge badge-xs badge-ghost">#{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
+                            @endif
+                            
+                            <div class="card-actions justify-between items-center mt-4">
+                                <div class="flex gap-3">
+                                    <span class="btn btn-sm btn-ghost gap-1">💬 {{ $post->comments_count }}</span>
+                                    <span class="btn btn-sm btn-ghost gap-1">❤️ {{ $post->likes_count }}</span>
+                                </div>
+                                <a href="/post/{{ $post->id }}" class="btn btn-primary btn-sm">Loe edasi →</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center py-16">
+                <span class="text-8xl block mb-6">🔍</span>
+                <h3 class="text-2xl font-bold mb-2">Midagi ei leitud</h3>
+                <p class="text-base-content/60 mb-6">
+                    Otsingule "{{ $query }}" ei leitud ühtegi postitust.
+                </p>
+                <a href="/" class="btn btn-primary">Tagasi avalehele →</a>
             </div>
         @endif
         
-        @yield('content')
+        <!-- Otsingu näpunäited -->
+        <div class="mt-12 p-6 bg-base-100 rounded-xl">
+            <h4 class="font-semibold mb-3 flex items-center gap-2">💡 Otsingu näpunäited:</h4>
+            <ul class="text-sm text-base-content/70 space-y-1">
+                <li>• Otsi märksõnadega: <span class="badge badge-sm">Laravel</span> <span class="badge badge-sm">DaisyUI</span></li>
+                <li>• Otsi autorite nimede järgi</li>
+                <li>• Pikemad otsingusõnad annavad täpsemaid tulemusi</li>
+            </ul>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="footer footer-center bg-base-300 text-base-content p-6 mt-12">
+    <footer class="footer footer-center bg-base-300 text-base-content p-10 mt-12">
         <div>
             <p class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Riksi Blogi

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="grid md:grid-cols-2 gap-6">
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     
     <!-- Lisa postitus -->
     <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all">
@@ -39,7 +39,31 @@
         </div>
     </div>
     
-    <!-- Statistika (placeholder) -->
+    <!-- Kategooriad -->
+    <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all">
+        <div class="card-body text-center">
+            <div class="text-6xl mb-4">📂</div>
+            <h2 class="card-title text-2xl justify-center">Kategooriad</h2>
+            <p class="text-base-content/70">Halda blogi kategooriaid</p>
+            <div class="card-actions justify-center mt-4">
+                <a href="/kategooriad" class="btn btn-ghost">Vaata kategooriaid →</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Kommentaarid -->
+    <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all">
+        <div class="card-body text-center">
+            <div class="text-6xl mb-4">💬</div>
+            <h2 class="card-title text-2xl justify-center">Kommentaarid</h2>
+            <p class="text-base-content/70">Halda kommentaare</p>
+            <div class="card-actions justify-center mt-4">
+                <button class="btn btn-ghost" disabled>Varsti →</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistika -->
     <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all">
         <div class="card-body text-center">
             <div class="text-6xl mb-4">📊</div>
